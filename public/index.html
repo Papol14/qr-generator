@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QR Code Generator</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>QR Code Generator</h1>
+    <form id="qrForm">
+      <label for="text">Enter text or URL:</label>
+      <input
+        type="text"
+        id="text"
+        name="text"
+        placeholder="https://example.com"
+        required
+      />
+      <button type="submit">Generate QR Code</button>
+    </form>
+    <h2>QR Code:</h2>
+    <img
+      id="qrCodeImage"
+      alt="Your QR Code will appear here"
+      style="display: none"
+    />
+
+    <script>
+      const form = document.getElementById("qrForm");
+      const qrCodeImage = document.getElementById("qrCodeImage");
+
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        const text = document.getElementById("text").value;
+
+        if (text) {
+          // Fetch the QR code from the serverless function
+          const qrCodeUrl = `/api/generate-qr?text=${encodeURIComponent(text)}`;
+          qrCodeImage.src = qrCodeUrl;
+          qrCodeImage.style.display = "block";
+        }
+      });
+    </script>
+  </body>
+</html>

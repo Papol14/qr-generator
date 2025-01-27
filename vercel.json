@@ -1,0 +1,5 @@
+{
+  "version": 2,
+  "public": "public",
+  "rewrites": [{ "source": "/generate-qr", "destination": "/api/generate-qr" }]
+}
